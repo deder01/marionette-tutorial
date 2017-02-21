@@ -44,7 +44,10 @@
             });
 
             ContactManager.ContactsCollection = Backbone.Collection.extend({
-                model: ContactManager.Contact
+                model: ContactManager.Contact,
+                comparator: function(item) {
+                    return [item.get("lastName"), item.get("firstName")];
+                }
             });
 
             // Views
@@ -95,7 +98,13 @@
                         firstName: "Thomas",
                         lastName: "Jefferson",
                         phoneNumber: "202-317-1776"
+                    },
+                    {
+                        firstName: "Abe",
+                        lastName: "Jefferson",
+                        phoneNumber: "202-317-1776"
                     }
+
                 ]);
 
                 var contactsListView = new ContactManager.ContactsView({
